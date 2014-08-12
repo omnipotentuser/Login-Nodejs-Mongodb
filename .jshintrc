@@ -1,0 +1,26 @@
+{
+  "predef":[
+    "__dirname",
+    "__filename",
+    "exports",
+    "module",
+    "require",
+    "clearTimeout",
+    "clearInterval",
+    "setTimeout",
+    "describe",
+    "before",
+    "beforeEach",
+    "after",
+    "afterEach",
+    "it"
+  ],
+  "devel" : true,
+  "camelcase" : true,
+  "indent" : 2,
+  "undef" : true,
+  "quotemark" : "single"
+  "maxlen" : 100,
+  "trailing" : true,
+  "curly" : true
+}
