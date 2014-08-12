@@ -1,0 +1,24 @@
+{
+  "name" : "Login-Boilerplate",
+  "version" : "0.0.1",
+  "private" : false,
+  "config" : { "port" : "19999" },
+  "dependencies" : {
+    "express" : "",
+    "jade" : "",
+    "stylus" : "",
+    "nib" : "",
+    "emailjs" : "",
+    "mkdirp" : "",
+    "moment" : "",
+    "mongodb" : ""
+  },
+  "devDependencies" : {
+    "mocha" : "",
+    "grunt" :""
+  },
+  "scripts" : {
+    "start" : "node server.js",
+    "test" : "mocha --reporter=nyan"
+  }
+}
