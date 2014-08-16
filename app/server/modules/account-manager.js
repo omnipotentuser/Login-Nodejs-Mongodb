@@ -64,7 +64,7 @@ exports.addNewAccount = function(newData, callback){
           saltAndHash(newData.pass, function(hash){
             newData.pass = hash;
             newData.date = moment().format('MM Do YYY, h:mm:ss a');
-            accounts.insert({newData, {safe: true}, callback);
+            accounts.insert(newData, {safe: true}, callback);
           });
         }
       });
@@ -152,7 +152,7 @@ var saltAndHash = function(pass, callback){
   callback(salt + md5(pass + salt));
 };
 
-var generateSalt(){
+var generateSalt = function(){
   var set = '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ';
   var salt = '';
   for (var i = 0; i < 10; i++){

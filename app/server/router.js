@@ -4,7 +4,7 @@ var EM = require('./modules/email-dispatcher');
 
 module.exports = function(app){
   app.get('/', function(req, res){
-    if (typeof(req.cookies.user) === undefined || typeof(req.cookie.pass) === 'undefined'){
+    if (typeof(req.cookies.user) === 'undefined' || typeof(req.cookies.pass) === 'undefined'){
       res.render('login', {title: 'Please Login to Your Account', roles: RL});
     } else {
       AM.autoLogin(req.cookies.user, req.cookies.pass, function(userObj){
@@ -60,8 +60,8 @@ module.exports = function(app){
               console.log('deleteUser error', err.message);
               res.send(err, '400');
             }
-          }
-        }
+          });
+        };
       });
     } else {
       res.redirect('/');
