@@ -1,0 +1,37 @@
+extends layout
+block scripts
+  script(src='//code.jquery.com/jquery-1.10.2.min.js')
+  script(src='//code.jquery.com/ui/1.10.4/jquery-ui.min.js')
+  script(src='/vendor/jquery.form.min.js')
+  script(src='/js/views/signup.js')
+  script(src='/js/views/login.js')
+  script(src='/js/views/system.js')
+  script(src='/js/controllers/loginController.js')
+  script(src='/js/controllers/signupController.js')
+  script(src='/js/controllers/sysController.js')
+  script(src='/js/form-validators/loginValidator.js')
+  script(src='/js/form-validators/emailValidator.js')
+  script(src='/js/form-validators/accountValidator.js')
+block content
+  - user = typeof(udata) !== 'undefined' ? udata : {}
+  input(type='hidden', value=user._id)#userId
+  #login-container
+    form(method='post')#login-form
+      h1 OpenHack Login
+      input(type='text', name='user', id='user-tf', class='input-textbox', placeholder='username')
+      input(type='password', name='pass', id='pass-tf', class='input-textbox', placeholder='password')
+      button(type='submit')#btn-login
+        i
+        | sign in
+      label#remember-me.checkbox Remember Me
+        input(type='checkbox', checked)
+        div.clear-fix
+        hr
+        div.btm-links
+          a(href='#forgot_pw')#forgot-password Forgot Your Password?
+  include modals/lost-password
+  include modals/signup-error
+  include modals/signup-alert
+  include modals/alert
+  #account-form-container
+    include account

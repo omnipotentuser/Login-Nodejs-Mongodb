@@ -1,0 +1,32 @@
+extends layout
+block scripts
+  script(src='js/views/admin.js')
+  script(src='js/controller/adminController.js')
+  script(src='js/form-validator/userValidator.js')
+block content
+  - user = typeof(udata) !== 'undefined' ? udata : {}
+  - bacon = 'nick@openhack.net'
+  input(type="hidden", value=user._id)#userId
+  #facility-container
+    .status-bar
+      #role-status
+        p #{title}
+        p.login-label Logged in as:
+        p.login-as #{user.user}
+      #logout-home
+        button#btn-logout Logout
+    main.body-home
+      #user-list-container
+        .user-list-layout
+        .list-controls
+          #add
+            button.btn-list-controls.add ADD
+          #del
+            button.btn-list-controls.del DEL
+      #user-info
+        include account
+    footer.footer-home
+      | Powered by
+        a(href='http://www.openhack.net')OpenHack.net
+  include modals/signup-error
+  include modals/alert
