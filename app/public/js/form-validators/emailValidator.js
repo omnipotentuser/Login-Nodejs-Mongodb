@@ -1,5 +1,5 @@
 function EmailValidator(){
-  var that = thiss;
+  var that = this;
   
   that.retrievePassword = $('#get-credentials');
   that.retrievePasswordAlert = $('#get-credentials .alert');
