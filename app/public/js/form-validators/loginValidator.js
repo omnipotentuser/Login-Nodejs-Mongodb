@@ -1,13 +1,12 @@
 function LoginValidator(){
   var loginErrors = $('#modal-alert');
   this.showLoginError = function (t, m){
-    console.log('showLoginerror');
     $('#modal-alert .modal-header h3').text(t);
     $('#modal-alert .modal-body p').text(m);
-    console.log('before open');
+    console.log('showLoginError - before open');
     loginErrors.dialog( "moveToTop" );
     loginErrors.dialog("open");
-    console.log('after open');
+    console.log('showLoginError - after open');
   }
 }
 LoginValidator.prototype.validateForm = function(){

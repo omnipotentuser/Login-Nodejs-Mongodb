@@ -1,5 +1,5 @@
 function SysController(){
-  $('modal-alert').dialog({
+  $('#modal-alert').dialog({
     autoOpen: false,
     modal: true,
     buttons: [{
