@@ -7,11 +7,10 @@ var moment = require('moment');
 //var assert = require('assert');
 
 var dbconfig = require('./dbconfig.js');
-//var dbconfig = {dbPort: 27017, dbHost: 'localhost', dbName: 'login'};
 //assert.deepEqual(dbconfig, {dbPort: 27017, dbHost: 'localhost', dbName: 'login'});
 
-console.log('dbName:', dbconfig.dbName);
-console.log('admin name:', dbconfig.adminUser.name);
+//console.log('dbName:', dbconfig.dbName);
+//console.log('admin name:', dbconfig.adminUser.name);
 
 var dbPort = dbconfig.dbPort;
 var dbHost = dbconfig.dbHost;
@@ -30,9 +29,12 @@ db.open(function(e, d){
     console.log(e);
   } else {
     console.log('connected to database "' + dbName + '"');
+    accounts = db.collection('accounts');
+    seed();
   }
-  accounts = db.collection('accounts');
+});
 
+var seed = function(){
   addNewAccount(dbconfig.adminUser, function adminResult(err){
     if (err){
       console.log('Create admin user:', err);
@@ -40,9 +42,7 @@ db.open(function(e, d){
       console.log('Created admin user');
     }
   });
-});
-
-//var accounts = db.collection('accounts');
+};
 
 exports.autoLogin = function(user, pass, callback){
   accounts.findOne({user:user}, function(e, o){
@@ -74,7 +74,7 @@ exports.manualLogin = function(user, pass, callback){
 var addNewAccount = function(newData, callback){
   accounts.findOne({user:newData.user}, function(e, o){
     if (o){
-      console.log('username-taken');
+      callback('username-taken');
     } else {
       accounts.findOne({email:newData.email}, function(e, o){
         if (o){

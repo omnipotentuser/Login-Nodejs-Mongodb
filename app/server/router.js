@@ -71,7 +71,7 @@ module.exports = function(app){
   app.get('/home', function(req, res){
     var user = req.session.user;
     if (user){
-      console.info('session user: ', user.user, user.role);
+      console.info('session user:', user.user, 'role:', user.role);
       if (user.role === 'admin'){
         res.render('admin', {
           title: 'Administrator Panel',

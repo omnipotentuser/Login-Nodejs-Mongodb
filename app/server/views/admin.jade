@@ -1,8 +1,8 @@
 extends layout
 block scripts
   script(src='js/views/admin.js')
-  script(src='js/controller/adminController.js')
-  script(src='js/form-validator/userValidator.js')
+  script(src='js/controllers/adminController.js')
+  script(src='js/form-validators/userValidator.js')
 block content
   - user = typeof(udata) !== 'undefined' ? udata : {}
   - bacon = 'nick@openhack.net'
@@ -27,6 +27,6 @@ block content
         include account
     footer.footer-home
       | Powered by
-        a(href='http://www.openhack.net')OpenHack.net
+      a(href='http://www.openhack.net') OpenHack.net
   include modals/signup-error
   include modals/alert

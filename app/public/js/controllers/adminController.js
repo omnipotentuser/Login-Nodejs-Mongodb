@@ -4,7 +4,7 @@ function AdminController(){
     that.attemptLogout();
   });
 
-  $(#account-form-btn1.btn').click( function(){
+  $('#account-form-btn1.btn').click( function(){
     $('#user-info').hide();
     $('#account-form-container').hide();
     $('.btn-list-controls.add').removeAttr('disabled');
