@@ -27,6 +27,7 @@ module.exports = function(app){
         }
         res.send(userObj, 200);
       } else {
+        console.log(err);
         res.send(err, 400);
       }
     });
@@ -148,7 +149,7 @@ module.exports = function(app){
       pass: req.param('pass')
     }, function(err){
       if (err){
-        console.error(e);
+        console.error(err);
         res.send(err, 400);
       } else {
         console.info('/admin-create ok');
