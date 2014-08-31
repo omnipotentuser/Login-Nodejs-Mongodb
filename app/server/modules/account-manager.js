@@ -16,6 +16,7 @@ console.log('admin name:', dbconfig.adminUser.name);
 var dbPort = dbconfig.dbPort;
 var dbHost = dbconfig.dbHost;
 var dbName = dbconfig.dbName;
+var accounts = null;
 
 var db = new MongoDB( dbName
   , new Server(dbHost
@@ -30,9 +31,18 @@ db.open(function(e, d){
   } else {
     console.log('connected to database "' + dbName + '"');
   }
+  accounts = db.collection('accounts');
+
+  addNewAccount(dbconfig.adminUser, function adminResult(err){
+    if (err){
+      console.log('Create admin user:', err);
+    } else {
+      console.log('Created admin user');
+    }
+  });
 });
 
-var accounts = db.collection('accounts');
+//var accounts = db.collection('accounts');
 
 exports.autoLogin = function(user, pass, callback){
   accounts.findOne({user:user}, function(e, o){
@@ -64,7 +74,7 @@ exports.manualLogin = function(user, pass, callback){
 var addNewAccount = function(newData, callback){
   accounts.findOne({user:newData.user}, function(e, o){
     if (o){
-      callback('username-taken');
+      console.log('username-taken');
     } else {
       accounts.findOne({email:newData.email}, function(e, o){
         if (o){
@@ -194,11 +204,3 @@ var findByMultipleFields = function(a, callback){
       callback(null, result);
   });
 };
-
-addNewAccount(dbconfig.adminUser, function adminResult(err){
-  if (err){
-    console.log('Create admin user:', err);
-  } else {
-    console.log('Created admin user');
-  }
-});
