@@ -4,22 +4,31 @@ var crypto = require('crypto');
 var MongoDB = require('mongodb').Db;
 var Server = require('mongodb').Server;
 var moment = require('moment');
+//var assert = require('assert');
 
-var dbPort = 27017;
-var dbHost = 'localhost';
-var dbName = 'login';
+var dbconfig = require('./dbconfig.js');
+//var dbconfig = {dbPort: 27017, dbHost: 'localhost', dbName: 'login'};
+//assert.deepEqual(dbconfig, {dbPort: 27017, dbHost: 'localhost', dbName: 'login'});
+
+console.log('dbName:', dbconfig.dbName);
+console.log('admin name:', dbconfig.adminUser.name);
+
+var dbPort = dbconfig.dbPort;
+var dbHost = dbconfig.dbHost;
+var dbName = dbconfig.dbName;
 
 var db = new MongoDB( dbName
-    , new Server(dbHost
-      , dbPort
-      , {auto_reconnect: true})
-    , {w:1}
-  );
+  , new Server(dbHost
+    , dbPort
+    , {auto_reconnect: true})
+  , {w:1}
+);
+
 db.open(function(e, d){
   if (e){
     console.log(e);
   } else {
-    console.log('connected to database ::', dbName, ', data', d);
+    console.log('connected to database "' + dbName + '"');
   }
 });
 
@@ -52,7 +61,7 @@ exports.manualLogin = function(user, pass, callback){
   });
 };
 
-exports.addNewAccount = function(newData, callback){
+var addNewAccount = function(newData, callback){
   accounts.findOne({user:newData.user}, function(e, o){
     if (o){
       callback('username-taken');
@@ -64,6 +73,7 @@ exports.addNewAccount = function(newData, callback){
           saltAndHash(newData.pass, function(hash){
             newData.pass = hash;
             newData.date = moment().format('MM Do YYY, h:mm:ss a');
+            console.log('addNewAccount - saltAndHash at', newData.date);
             accounts.insert(newData, {safe: true}, callback);
           });
         }
@@ -71,6 +81,8 @@ exports.addNewAccount = function(newData, callback){
     }
   });
 };
+
+exports.addNewAccount = addNewAccount;
 
 exports.updateAccount = function(newData, callback){
   console.log('updateAccount');
@@ -148,6 +160,7 @@ var validatePassword = function(plainPass, hashedPass, callback){
 };
 
 var saltAndHash = function(pass, callback){
+  console.log('saltAndHash');
   var salt = generateSalt();
   callback(salt + md5(pass + salt));
 };
@@ -181,3 +194,11 @@ var findByMultipleFields = function(a, callback){
       callback(null, result);
   });
 };
+
+addNewAccount(dbconfig.adminUser, function adminResult(err){
+  if (err){
+    console.log('Create admin user:', err);
+  } else {
+    console.log('Created admin user');
+  }
+});

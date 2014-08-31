@@ -1,4 +1,5 @@
-module.exports = [ {role: 'admin'}
+module.exports = [
+    {role: 'admin'}
   , {role: 'agent'}
   , {role: 'regular'}
 ];

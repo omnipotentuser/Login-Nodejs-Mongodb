@@ -38,7 +38,14 @@ app.set(favicon());
 app.use(bodyParser());
 app.use(cookieParser());
 app.use(methodOverride());
-app.use(session({secret: 'someultrasecretcode'}));
+app.set('trust proxy', 1);
+app.use(session({
+    secret: 'omnipotent007Securet'
+  , resave: true
+  , saveUninitialized: true
+  , secure: true
+  , cookie: { maxAge: 900000 }
+}));
 app.use(stylus.middleware({
     src: pub
   , compile: compile
