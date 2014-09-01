@@ -91,6 +91,9 @@ $(document).ready(function(){
         console.log('sendForm.value: ' + formData[1].value);
         console.log('sendForm.name: ' + formData[3].name);
         console.log('sendForm.value: ' + formData[3].value);
+        // param = false because we are not currently incorporating empty
+        // password, although we may want to in the future avoid asking admin
+        // to know user password when editing an user.
         return uv.validateForm(false);
       },
       url: url,
