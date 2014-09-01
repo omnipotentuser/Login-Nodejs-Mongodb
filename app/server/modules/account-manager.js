@@ -186,7 +186,7 @@ var generateSalt = function(){
 };
 
 var getObjectId = function(id){
-  return accounts.db.bson_serializer.ObjectId.createFromHexString(id);
+  return accounts.db.bson_serializer.ObjectID.createFromHexString(id);
 };
 
 var findById = function( id, callback){

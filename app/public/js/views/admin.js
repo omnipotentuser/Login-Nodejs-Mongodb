@@ -21,7 +21,6 @@ $(document).ready(function(){
       type: 'POST',
       dataType: 'json',
       success: function(data, textStatus, jqXHR){
-        console.log('list length: '+data.length);
         updateUserList(data);
         return false;
       },
@@ -162,6 +161,6 @@ $(document).ready(function(){
   $('#account-form-btn2.btn').html('Submit');
   $('#account-form-btn2.btn').addClass('btn-primary');
 
-  adminUpdateList();
-  console.log('admin page is ready');
-});
+    adminUpdateList();
+    console.log('admin page is ready');
+  });

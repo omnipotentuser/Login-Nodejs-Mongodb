@@ -10,10 +10,8 @@ function UserValidator(){
 
   this.validatePassword = function(s, lookup){
     if (lookup && $('#userId').val() && s===''){
-      console.log('lookup user');
       return true;
     } else {
-      console.log('do not lookup');
       return s.length >= 3;
     }
   }
