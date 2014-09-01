@@ -48,8 +48,9 @@ module.exports = function(app){
   });
   app.post('/deleteUser', function(req, res){
     if (req.session.user){
-      console.log('deleteUser param _id', req.param('_id'),', id', req.param('id'));
-      AM.deleteAccount(req.param('_id'), function(err, userObj){
+      var uid = req.param('_id');
+      console.log('deleteUser param _id', uid);
+      AM.deleteAccount(uid, function(err, userObj){
         if (err){
           console.log('deleteUser error', err.message);
           res.send(err, '400');
