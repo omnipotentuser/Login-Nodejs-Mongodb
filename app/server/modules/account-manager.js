@@ -104,6 +104,9 @@ exports.updateAccount = function(newData, callback){
     o.name = newData.name;
     o.email = newData.email;
     o.role = newData.role;
+    // from client param if updating user info
+    // will need to implement mechanism for admin to
+    // update password in its own form.
     if (newData.pass === ''){
       accounts.save(o, {safe: true}, function(err){
         if (err){
@@ -115,7 +118,13 @@ exports.updateAccount = function(newData, callback){
     } else {
       saltAndHash(newData.pass, function(hash){
         o.pass = hash;
-        accounts.save(o, {safe: true}, callback);
+        accounts.save(o, {safe: true}, function(err){
+          if (err){
+            callback(err);
+          } else {
+            callback(null);
+          }
+        });
       });
     }
   });

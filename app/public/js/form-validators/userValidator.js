@@ -9,7 +9,7 @@ function UserValidator(){
   }
 
   this.validatePassword = function(s, lookup){
-    if (lookup && $('#userId').val() && s===''){
+    if (lookup && $('#userId').val() && s === ''){
       return true;
     } else {
       return s.length >= 3;
@@ -43,19 +43,25 @@ UserValidator.prototype.showInvalidUserName = function(){
 
 UserValidator.prototype.validateForm = function(lookupUser){
   var e = [];
-  for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
+  for (var i=0; i < this.controlGroups.length; i++){
+    this.controlGroups[i].removeClass('error');
+  }
   if(this.validateName(this.formFields[0].val()) == false) {
     this.controlGroups[0].addClass('error');
-    e.push('Please enter your name');
+    e.push('Please give a name of 3 or greater letters');
   }
   if(this.validateEmail(this.formFields[1].val()) == false) {
     this.controlGroups[1].addClass('error');
-    e.push('Please enter a valid email');
+    e.push('Please enter a valid email (e.g. bob@email.com)' );
   }
   if(this.validateName(this.formFields[2].val()) == false) {
     this.controlGroups[2].addClass('error');
-    e.push('Please choose a username');
+    e.push('Please choose a username of 3 or greater characters');
   }
+  // loopupUser is false, until we implement an actual user update
+  // which does not need to enter a password. The admin does not need to 
+  // regard passwords, and adding password is reserved only for 
+  // creating new users.
   if(this.validatePassword(this.formFields[3].val(), lookupUser) == false) {
     this.controlGroups[3].addClass('error');
     e.push('Password should be at least 3 characters');

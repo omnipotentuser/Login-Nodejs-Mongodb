@@ -4,7 +4,6 @@ $(document).ready(function(){
 
   var addbtn = $('.btn-list-controls.add');
   var delbtn = $('.btn-list-controls.del');
-  var editbtn = $('.btn-list-controls.edit');
 
   var userObj = {};
   var selectedUser = {};
@@ -12,7 +11,9 @@ $(document).ready(function(){
   var classHighlight = 'highlight';
 
   function listRemoveHighlight(){
-    $('.user-list-slot').each(function(){ $(this).removeClass(classHighlight); });
+    $('.user-list-slot').each( function(){ 
+      $(this).removeClass(classHighlight);
+    });
   }
 
   function adminUpdateList() {
@@ -73,7 +74,6 @@ $(document).ready(function(){
             $('#name-signup').focus();
             addbtn.removeAttr('disabled');
             delbtn.removeAttr('disabled');
-            editbtn.removeAttr('disabled');
             return false;
           }, 
           false
@@ -91,6 +91,9 @@ $(document).ready(function(){
         console.log('sendForm.value: ' + formData[1].value);
         console.log('sendForm.name: ' + formData[3].name);
         console.log('sendForm.value: ' + formData[3].value);
+        // param = false because we are not currently incorporating empty
+        // password, although we may want to in the future avoid asking admin
+        // to know user password when editing an user.
         return uv.validateForm(false);
       },
       url: url,
@@ -115,25 +118,10 @@ $(document).ready(function(){
       sendForm("/admin-create");
       listRemoveHighlight();
       delbtn.attr('disabled', 'disabled');
-      editbtn.attr('disabled', 'disabled');
       $('#user-info').show();
       $('#account-form-container').show();
       $('#user-signup').show();
       $('#user-cg').show();
-      $('#name-signup').focus();
-    })();
-  });
-
-  editbtn.click(function(){
-    (function(){
-      updateAccountForm("Updating " + selectedUser.user);
-      sendForm("/admin-edit");
-      editbtn.attr('disabled', 'disabled');
-      delbtn.attr('disabled', 'disabled');
-      addbtn.attr('disabled', 'disabled');
-      $('#user-info').show();
-      $('#account-form-container').show();
-      $('#user-cg').hide();
       $('#name-signup').focus();
     })();
   });
@@ -146,6 +134,7 @@ $(document).ready(function(){
       data: selectedUser,
       success: function(data, textStatus, jqXHR){
         adminUpdateList();
+        $('#user-info').hide();
         return false;
       },
       error: function(jqXHR, textStatus, errorThrown){
@@ -155,12 +144,11 @@ $(document).ready(function(){
   });
 
   delbtn.attr('disabled', 'disabled');
-  editbtn.attr('disabled', 'disabled');
   
   $('#account-form-btn1.btn').html('Cancel');
   $('#account-form-btn2.btn').html('Submit');
   $('#account-form-btn2.btn').addClass('btn-primary');
 
-    adminUpdateList();
-    console.log('admin page is ready');
-  });
+  adminUpdateList();
+  console.log('admin page is ready');
+});
