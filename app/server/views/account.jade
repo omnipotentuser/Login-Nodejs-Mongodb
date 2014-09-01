@@ -1,0 +1,33 @@
+form(method='post')#account-form
+  h1
+  p#sub1.subheading Please tell us a little about yourself.
+  hr
+  fieldset
+    #name-cg.control-group
+      label.control-label(for='name-signup') Name
+      .controls
+        input#name-signup.input-xlarge(type='text', name='name')
+    #email-cg.control-group
+      label.control-label(for='email-signup') Email
+      .controls
+        input#email-signup.input-xlarge(type='text', name='email')
+    #rlist-cg.control-group
+      label.control-label(for='roles-list') Role
+      .controls
+        select#roles-list(name='role')
+          each item in roles
+            option(selected=item.role == user.role)= item.role
+
+    hr
+    p#sub2.subheading
+    #user-cg.control-group
+      label.control-label(for='user-signup') Username
+      .controls
+        input#user-signup.inputxlarge.disabled(type='text', name='user')
+    #pass-cg.control-group
+      label.control-label(for='pass-signup') Password
+      .controls
+        input#pass-signup.input-xlarge.disabled(type='password', name='pass')
+    .form-actions
+      button(type='button')#account-form-btn1.btn
+      button(type='submit')#account-form-btn2.btn
