@@ -46,15 +46,15 @@ UserValidator.prototype.validateForm = function(lookupUser){
   for (var i=0; i < this.controlGroups.length; i++) this.controlGroups[i].removeClass('error');
   if(this.validateName(this.formFields[0].val()) == false) {
     this.controlGroups[0].addClass('error');
-    e.push('Please enter your name');
+    e.push('Please give a name of 3 or greater letters');
   }
   if(this.validateEmail(this.formFields[1].val()) == false) {
     this.controlGroups[1].addClass('error');
-    e.push('Please enter a valid email');
+    e.push('Please enter a valid email (e.g. bob@email.com)' );
   }
   if(this.validateName(this.formFields[2].val()) == false) {
     this.controlGroups[2].addClass('error');
-    e.push('Please choose a username');
+    e.push('Please choose a username of 3 or greater characters');
   }
   if(this.validatePassword(this.formFields[3].val(), lookupUser) == false) {
     this.controlGroups[3].addClass('error');
