@@ -56,7 +56,7 @@ body {
   height 100%
   width 100%
 }
-#facility-container .status-bar {
+.status-bar {
   height 40px
   width 100%
   margin 0px
@@ -65,37 +65,36 @@ body {
   background-color #359
   position fixed
 }
-#facility-container .status-bar #logout-home {
+#logout-home {
     position absolute
     right 50px
 }
-#facility-container .status-bar #logout-home button#btn-logout{
+button#btn-logout{
   width 128px
   height 36px
 }
-#facility-container .status-bar #role-status {
+#role-status {
   float left
   position absolute
   width 600px
   height 100%
   display inline-block
 }
-#facility-container .status-bar #role-status p{
+#role-status p{
   float left
   font-size 18px
 }
-
-#facility-container .status-bar #role-status p.login-label{
+#role-status p.login-label{
   padding-left 30px
   font-size 12px
   padding-top 10px
 }
-#facility-container .status-bar #role-status p.login-as{
+#role-status p.login-as{
   padding-left 5px
   font-size 12px
   padding-top 10px
 }
-#facility-container main.body-home {
+main.body-home {
   background-color #fbfbfb
   position fixed
   top 50px
@@ -103,7 +102,7 @@ body {
   width 100%
   height 100%
 }
-#facility-container main.body-home #user-list-container {
+#user-list-container {
   position fixed
   cursor pointer
   left 50px
@@ -114,14 +113,13 @@ body {
   min-height 400px
   background-color #e8e8e8
   border 2px solid #3478ab
-  border-radius 5px
 }
-#facility-container main.body-home #user-list-container .user-list-layout {
+.user-list-layout {
   width 100%
   height 100%
   margin-bottom -72px
 }
-#facility-container main.body-home #user-list-container .user-list-layout .user-list-slot {
+.user-list-slot {
   color black
   font-size 18px
   text-align left
@@ -130,31 +128,31 @@ body {
   padding-right 5px
   height 30px
 }
-#facility-container main.body-home #user-list-container .list-controls {
+.list-controls {
   margin-top 22px
   height 48px
   width 100%
 }
-#facility-container main.body-home #user-list-container .list-controls #add {
+#add {
   width 50%
   height 100%
   float left
   border-radius 2px
   font-size 24
 }
-#facility-container main.body-home #user-list-container .list-controls #del {
+#del {
   width 50%
   height 100%
   float right
 }
-#facility-container main.body-home #user-list-container .list-controls .btn-list-controls {
+button.btn-list-controls {
   width 98%
   height 100%
   background-color #eef8ff
   border-radius 5px
   font-size 24px
 }
-#facility-container main.body-home #user-info {
+#user-info {
   display none
   position fixed
   top 100px
@@ -164,14 +162,11 @@ body {
   min-height 380px
   width 300px
   height 380px
-  border-radius 5px
-  background-color #e4f8ff
-  border 2px solid #3478ab
   padding 20px 80px 20px 80px
   text-align left
   color black
 }
-#facility-container footer.footer-home {
+.footer-home {
   height 20px
   width 100%
   background-color #172747
@@ -179,12 +174,15 @@ body {
   bottom 0px
   padding 2px
 }
-
+.footer-home a{
+  color lightblue
+  text-decoration none
+}
 #login-container {
   ohack-modal-layout 400px 480px
   display none
 }
-#login-container .input-textbox {
+.input-textbox {
   font-size 24px
   width 95%
   height 50px
@@ -193,7 +191,7 @@ body {
   padding 5px
   border-radius 5px
 }
-#login-container #btn-login {
+#btn-login {
   width 100px
   height 40px
   font-size 18px
@@ -225,5 +223,5 @@ body {
 .highlight {
   font-weight bold
   background-color #c8c8c8
-  color white
+  color darkgrey
 }
