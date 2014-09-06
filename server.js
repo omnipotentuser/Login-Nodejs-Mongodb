@@ -29,7 +29,12 @@ if (env === 'development'){
   app.use(morgan('dev'));
 } else {
   console.log('production mode');
-};
+}
+
+// comments
+//  testing colorscheme
+//
+//
 
 app.set('port', port);
 app.set('views', views);
@@ -40,7 +45,7 @@ app.use(cookieParser());
 app.use(methodOverride());
 app.set('trust proxy', 1);
 app.use(session({
-    secret: 'omnipotent007Securet'
+  secret: 'omnipotent007Securet'
   , resave: true
   , saveUninitialized: true
   , secure: true
